@@ -28,9 +28,9 @@
             
 			Msg = res.data;
 		} catch (error) {
-            console.log(error.message);
+            console.log(error);
             
-			Msg = JSON.stringify(error.message);
+			Msg = JSON.stringify(error);
 		}
 	});
 </script>
