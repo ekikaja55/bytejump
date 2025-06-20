@@ -24,9 +24,13 @@
 			const res =await api.post('/chatbot/chat', {
 				input: 'perkenalkan siapa anda'
 			});
+            console.log(res.data);
+            
 			Msg = res.data;
 		} catch (error) {
-			Msg = JSON.stringify(error);
+            console.log(error.message);
+            
+			Msg = JSON.stringify(error.message);
 		}
 	});
 </script>
