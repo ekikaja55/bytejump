@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { api } from '$lib/api';
+	import { mdToHtml } from '$lib/utils/markdown';
 	let Msg: string = '';
 	let input: string = '';
 	let loading = false;
@@ -30,7 +31,7 @@
 		loading = true;
 		try {
 			const res = await api.post('/chatbot/chat', { input });
-			Msg = res.data.result;
+			Msg = mdToHtml(res.data.result as string)  
 		} catch (error) {
 			console.error(error);
 			Msg = 'Gagal menghubungi bot.';
@@ -44,7 +45,7 @@
 
 <pre class="bg-gray-100 p-3 rounded mb-4">User Info: {JSON.stringify(userBaru, null, 2)}</pre>
 
-<pre class="bg-gray-200 p-3 rounded mb-4">Bot Response: {Msg}</pre>
+<pre class="bg-gray-200 p-3 rounded mb-4">Bot Response: {@html Msg}</pre>
 
 <form on:submit|preventDefault={handleSubmit} class="space-y-4 mb-6">
 	<label class="block">
